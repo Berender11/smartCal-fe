@@ -33,7 +33,7 @@ export default function Home() {
     const [dictOfVars, setDictOfVars] = useState({});
     const [latexExpression, setLatexExpression] = useState<Array<String>>([]);
     const [latexPosition, setLatexPosition] = useState({ x: 10, y: 100 });
-    const nodeRef = useRef<HTMLDivElement>(null);
+    const nodeRef = useRef<HTMLDivElement>(null!);
 
     useEffect(() => {
         if (reset) {
