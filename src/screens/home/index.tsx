@@ -33,7 +33,7 @@ export default function Home() {
     const [dictOfVars, setDictOfVars] = useState({});
     const [latexExpression, setLatexExpression] = useState<Array<String>>([]);
     const [latexPosition, setLatexPosition] = useState({ x: 10, y: 100 });
-    // const nodeRef = useRef<HTMLDivElement>(null);
+    const nodeRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (reset) {
@@ -47,9 +47,7 @@ export default function Home() {
 
     useEffect(() => {
         if (latexExpression.length > 0 && window.MathJax) {
-            window.MathJax.typesetPromise().then(() => {
-                console.log("MathJax typeset complete");
-            });
+            window.MathJax.typesetPromise()
         }
     }, [latexExpression]);
 
@@ -84,7 +82,6 @@ export default function Home() {
 
         script.onload = () => {
             if (window.MathJax) {
-                console.log("MathJax Loaded!");
                 window.MathJax.typesetPromise();
             }
         };
@@ -120,7 +117,6 @@ export default function Home() {
                 dict_of_vars: dictOfVars,
             });
             const resp = await response.data;
-            console.log(resp);
             resp.data.forEach((data: Response) => {
                 if (data.assign === true) {
                     setDictOfVars({
@@ -245,13 +241,13 @@ export default function Home() {
 
             {latexExpression && latexExpression.map((latex, index) => (
                 <Draggable
-                    // nodeRef={nodeRef}
+                    nodeRef={nodeRef}
                     key={index}
                     defaultPosition={latexPosition}
                     onStop={(_, data) => setLatexPosition({ x: data.x, y: data.y })}
                 >
                     <div
-                        // ref={nodeRef} 
+                        ref={nodeRef} 
                         className="absolute p-2 text-white rounded shadow-md">
                         <div className="latex-content">{latex}</div>
                     </div>
