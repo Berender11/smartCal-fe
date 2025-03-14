@@ -3,16 +3,14 @@ import { SWATCHES } from "@/constants/swatches";
 import { ColorSwatch, Group } from "@mantine/core";
 import { Button } from "../../components/ui/button";
 import axios from "axios";
-import { data } from "react-router-dom";
-// import "mathjax-full/es5/tex-mml-chtml.js";
 import Draggable from "react-draggable";
 
 declare global {
     interface Window {
-      MathJax: any;
+        MathJax: any;
     }
-  }
-  window.MathJax?.typesetPromise?.();  
+}
+window.MathJax?.typesetPromise?.();
 
 interface Response {
     expr: string;
@@ -35,7 +33,7 @@ export default function Home() {
     const [dictOfVars, setDictOfVars] = useState({});
     const [latexExpression, setLatexExpression] = useState<Array<String>>([]);
     const [latexPosition, setLatexPosition] = useState({ x: 10, y: 100 });
-    const nodeRef = useRef(null);
+    // const nodeRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (reset) {
@@ -49,9 +47,6 @@ export default function Home() {
 
     useEffect(() => {
         if (latexExpression.length > 0 && window.MathJax) {
-            // setTimeout(() => {
-            //     window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
-            // }, 0);
             window.MathJax.typesetPromise().then(() => {
                 console.log("MathJax typeset complete");
             });
@@ -81,35 +76,7 @@ export default function Home() {
                 ctx.strokeStyle = color;
             }
         }
-        // const script = document.createElement('script');
-        // script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/config/TeX-MML-AM_CHTML.js";
-        // script.async = true;
-        // document.head.appendChild(script);
 
-        // script.onload = () => {
-        //     window.MathJax.Hub.Config({
-        //         tex2jax: {
-        //             inlineMath: [['$', '$'], ['\\(', '\\)']]
-        //         }
-        //     })
-        // };
-
-        // return () => {
-        //     document.head.removeChild(script);
-        // }
-
-        //Second TRY
-        // MathJax.config({
-        //     tex2jax: {
-        //       inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        //     },
-        //   });
-
-        //   MathJax.startup?.promise.then(() => {
-        //     console.log("MathJax Loaded!");
-        //   });
-
-        //Third TRY
         const script = document.createElement("script");
         script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js";
         script.async = true;
@@ -148,14 +115,6 @@ export default function Home() {
         const canvas = canvasRef.current;
 
         if (canvas) {
-            // const response = await axios({
-            //     method: 'post',
-            //     url: `${import.meta.env.VITE_API_URL}/api/calculate`,
-            //     data: {
-            //         image: canvas.toDataURL('image/png'),
-            //         dict_of_vars: dictOfVars,
-            //     }
-            // });
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/calculate`, {
                 image: canvas.toDataURL('image/png'),
                 dict_of_vars: dictOfVars,
@@ -227,7 +186,7 @@ export default function Home() {
         setLastPosition(null);
     }
     const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
-        if (!isDrawing) {
+        if (!isDrawing || !lastPosition) {
             return;
         }
         const canvas = canvasRef.current;
@@ -285,12 +244,15 @@ export default function Home() {
             />
 
             {latexExpression && latexExpression.map((latex, index) => (
-                <Draggable nodeRef={nodeRef}
+                <Draggable
+                    // nodeRef={nodeRef}
                     key={index}
                     defaultPosition={latexPosition}
-                    onStop={(e, data) => setLatexPosition({ x: data.x, y: data.y })}
+                    onStop={(_, data) => setLatexPosition({ x: data.x, y: data.y })}
                 >
-                    <div ref={nodeRef} className="absolute p-2 text-white rounded shadow-md">
+                    <div
+                        // ref={nodeRef} 
+                        className="absolute p-2 text-white rounded shadow-md">
                         <div className="latex-content">{latex}</div>
                     </div>
                 </Draggable>
