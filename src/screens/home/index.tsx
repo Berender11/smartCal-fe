@@ -4,7 +4,6 @@ import { ColorSwatch, Group } from "@mantine/core";
 import { Button } from "../../components/ui/button";
 import axios from "axios";
 import { data } from "react-router-dom";
-// import "mathjax-full/es5/tex-mml-chtml.js";
 import Draggable from "react-draggable";
 
 declare global {
@@ -49,9 +48,6 @@ export default function Home() {
 
     useEffect(() => {
         if (latexExpression.length > 0 && window.MathJax) {
-            // setTimeout(() => {
-            //     window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
-            // }, 0);
             window.MathJax.typesetPromise().then(() => {
                 console.log("MathJax typeset complete");
             });
@@ -81,35 +77,6 @@ export default function Home() {
                 ctx.strokeStyle = color;
             }
         }
-        // const script = document.createElement('script');
-        // script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/config/TeX-MML-AM_CHTML.js";
-        // script.async = true;
-        // document.head.appendChild(script);
-
-        // script.onload = () => {
-        //     window.MathJax.Hub.Config({
-        //         tex2jax: {
-        //             inlineMath: [['$', '$'], ['\\(', '\\)']]
-        //         }
-        //     })
-        // };
-
-        // return () => {
-        //     document.head.removeChild(script);
-        // }
-
-        //Second TRY
-        // MathJax.config({
-        //     tex2jax: {
-        //       inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        //     },
-        //   });
-
-        //   MathJax.startup?.promise.then(() => {
-        //     console.log("MathJax Loaded!");
-        //   });
-
-        //Third TRY
         const script = document.createElement("script");
         script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js";
         script.async = true;
@@ -148,14 +115,6 @@ export default function Home() {
         const canvas = canvasRef.current;
 
         if (canvas) {
-            // const response = await axios({
-            //     method: 'post',
-            //     url: `${import.meta.env.VITE_API_URL}/api/calculate`,
-            //     data: {
-            //         image: canvas.toDataURL('image/png'),
-            //         dict_of_vars: dictOfVars,
-            //     }
-            // });
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/calculate`, {
                 image: canvas.toDataURL('image/png'),
                 dict_of_vars: dictOfVars,
