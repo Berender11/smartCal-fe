@@ -112,7 +112,8 @@ export default function Home() {
         const canvas = canvasRef.current;
 
         if (canvas) {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/calculate`, {
+            console.log(import.meta.env.VITE_API_URL);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/calculate/`, {
                 image: canvas.toDataURL('image/png'),
                 dict_of_vars: dictOfVars,
             });
