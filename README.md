@@ -49,15 +49,7 @@ The app will run locally—usually on http://localhost:3000.
 
 ## Folder Structure
 
-smartCal-fe/
-├── public/
-├── src/
-│   ├── components/
-│   ├── assets/
-│   ├── utils/
-│   └── ...
-├── package.json
-└── README.md
+<pre> ``` smartCal-fe/ ├── public/ ├── src/ │ ├── components/ │ ├── assets/ │ └── utils/ ├── package.json └── README.md ``` </pre>
 
 ## Contributing
 
