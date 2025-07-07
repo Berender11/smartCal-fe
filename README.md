@@ -66,4 +66,4 @@ Contributions are welcome! Please open issues or submit pull requests for new fe
 
 ## Contact
 
-For questions or support, open an issue or contact Berender11(https://github.com/Berender11).
+For questions or support, open an issue or contact [Berender11](https://github.com/Berender11).
