@@ -24,3 +24,45 @@ A smart calculator and notes application that allows users to write or draw anyt
 git clone https://github.com/Berender11/smartCal-fe.git
 cd smartCal-fe
 npm install
+```
+
+### Running The App
+
+```bash
+npm start
+```
+The app will run locally—usually on http://localhost:3000.
+
+## Usage
+
+1. Open the app in your browser.
+2. Use your mouse or touch device to write or draw in the input area.
+3. Take notes, solve math problems, or create sketches.
+4. The app will automatically recognize your input and offer intelligent suggestions or calculations.
+
+## Tech Stack
+
+- Frontend: TypeScript, JavaScript, HTML, CSS
+- Framework: React
+- Other Libraries:Pillow, uvicorn
+- Backend: Python, FastApi
+
+## Folder Structure
+
+smartCal-fe/
+├── public/
+├── src/
+│   ├── components/
+│   ├── assets/
+│   ├── utils/
+│   └── ...
+├── package.json
+└── README.md
+
+## Contributing
+
+Contributions are welcome! Please open issues or submit pull requests for new features, bug fixes, or improvements.
+
+## Contact
+
+For questions or support, open an issue or contact Berender11(https://github.com/Berender11).
