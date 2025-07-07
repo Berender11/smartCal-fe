@@ -48,8 +48,17 @@ The app will run locally—usually on http://localhost:3000.
 - Backend: Python, FastApi
 
 ## Folder Structure
-
-<pre> ``` smartCal-fe/ ├── public/ ├── src/ │ ├── components/ │ ├── assets/ │ └── utils/ ├── package.json └── README.md ``` </pre>
+ 
+  ``` 
+  smartCal-fe/ 
+  ├── public/ 
+  ├── src/ │ 
+  ├── components/ 
+  │ ├── assets/ 
+  │ └── utils/ 
+  ├── package.json 
+  └── README.md 
+  ```
 
 ## Contributing
 
